@@ -30,14 +30,6 @@ def get_moving_average(company_name, years=3):
     return stock_prices['Adj Close'].rolling(window=20).mean()
 
 
-# 获取每家科技公司的股票计算移动平均线（MA） 50天
-def get_moving_average_50(company_name, years=3):
-    stock_prices = get_stock_prices(company_name, years)
-    if stock_prices is None:
-        return None
-    return stock_prices['Adj Close'].rolling(window=50).mean()
-
-
 # 示例用法
 if __name__ == '__main__':
     # company_name TSLA NIO LCID AAPL

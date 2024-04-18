@@ -7,6 +7,8 @@ SECRET_KEY = 'django-insecure-=yi9pe_^7y7l(+#61*anr74&q7*1pg3*68oha!kpfo)-=^3#(c
 
 # 设置调试模式
 DEBUG = True
+# 设置端口
+PORT = 8090
 
 # 设置允许访问的主机
 ALLOWED_HOSTS = ['*']
