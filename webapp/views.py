@@ -10,21 +10,19 @@ def stock_data_view(request):
 
     # 使用函数获取股票价格和移动平均线数据
     stock_prices = get_stock_prices(company_name, years)
-    print(stock_prices.columns.values.tolist())
-    # 将数据转换为JSON格式
-    data = {
-        'success': True,
-        'data': {
-            'index': stock_prices.index.values.tolist(),
-            'open': stock_prices["Open"].tolist(),
-            'high': stock_prices["High"].tolist(),
-            'low': stock_prices["Low"].tolist(),
-            'close': stock_prices["Close"].tolist(),
-            'adjclose': stock_prices["Adj Close"].tolist(),
-            'volume': stock_prices["Volume"].tolist(),
 
-        }
-    }
+    stock_prices.index = stock_prices.index.strftime('%Y-%m-%d')
+    stock_prices = stock_prices.reset_index()
+    stock_prices.rename(columns={
+        'Date': 'date',
+        'Open': 'open',
+        'High': 'high',
+        'Low': 'low',
+        'Close': 'close',
+        'Adj Close': 'adj_close',
+        'Volume': 'volume',
+    }, inplace=True)
+    data = stock_prices.to_dict('records')
 
     # 返回JSON响应
-    return JsonResponse(data)
+    return JsonResponse(data, safe=False)

@@ -35,5 +35,5 @@ if __name__ == '__main__':
     # company_name TSLA NIO LCID AAPL
     company_name = 'TSLA'
     years = 3
-    stock_prices = get_moving_average(company_name, years)
-    print(stock_prices)
+    data = get_stock_prices(company_name, years)
+    print(data.to_dict("dict"))
