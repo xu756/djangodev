@@ -8,7 +8,6 @@ def get_stock_prices(company_name, years=3):
     # 设置数据获取的结束和开始时间
     end = datetime.now()
     start = datetime(end.year - years, end.month, end.day)
-
     # 从Yahoo Finance获取股票数据
     stock_data = yf.download(company_name, start, end)
     return stock_data
@@ -36,12 +35,3 @@ def get_daily_return(company_name, years=3):
     if stock_prices is None:
         return None
     return stock_prices['Adj Close'].pct_change()
-
-
-# 示例用法
-if __name__ == '__main__':
-    # company_name TSLA NIO LCID AAPL
-    company_name = 'TSLA'
-    years = 3
-    data = get_stock_prices(company_name, years)
-    print(data.to_dict("dict"))
