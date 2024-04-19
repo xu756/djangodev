@@ -30,6 +30,14 @@ def get_moving_average(company_name, years=3):
     return stock_prices['Adj Close'].rolling(window=20).mean()
 
 
+# 日收益率
+def get_daily_return(company_name, years=3):
+    stock_prices = get_stock_prices(company_name, years)
+    if stock_prices is None:
+        return None
+    return stock_prices['Adj Close'].pct_change()
+
+
 # 示例用法
 if __name__ == '__main__':
     # company_name TSLA NIO LCID AAPL
