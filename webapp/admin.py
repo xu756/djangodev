@@ -25,8 +25,25 @@ admin.site.site_title = '我的Django项目'
 class StockAdmin(admin.ModelAdmin):
     # 设置显示的字段
     list_display = ['id', 'company_name', 'date', 'open', 'high', 'low', 'close', 'adj_close', 'volume']
-    search_fields = ['company_name']
+    search_fields = ['company_name', ]
     list_per_page = 30
     list_max_show_all = 200
     list_display_links = ['company_name']
-    pass
+    # 排序
+    ordering = ['date']
+
+    # 添加获取数据的方法
+#     def get_data(self, request, queryset):
+#         # 这里可以根据queryset过滤选择的公司
+#         # 然后调用更新数据的函数
+#         selected_companies = queryset.values_list('company_name', flat=True).distinct()
+#         print(selected_companies)
+#         # for company_name in selected_companies:
+#         # 在这里调用更新数据的函数，这里只是一个示例
+#         # self.update_data_for_company(company_name)
+#
+#     get_data.short_description = '获取数据'
+#     actions = ['get_data']
+#
+#
+# admin.action(StockAdmin)
