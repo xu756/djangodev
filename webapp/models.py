@@ -65,3 +65,8 @@ class Stock(models.Model):
                                          close=close, adj_close=adj_close, volume=volume)
             stock.save()
         return self
+
+    def get_data(self, company_name):
+        # 返回公司名为company_name的所有数据
+        self.company_name = company_name
+        return Stock.objects.filter(company_name=company_name)
